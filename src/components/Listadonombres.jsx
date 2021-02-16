@@ -13,6 +13,7 @@ const Listadonombres = () => {
             tituloNombre:nombre
         }
         setListanombres([...listanombres, nuevoNombre])
+        setNombre('')
     }
 
     return (
@@ -21,11 +22,23 @@ const Listadonombres = () => {
             <div className="row">
                 <div className="col">
                     <h2>Listado de nombres</h2>
+                    <ul className="list-group">
+                        {
+                            listanombres.map(item =>
+                                <li key={item.id} className="list-group-item">{item.tituloNombre}</li>
+                            )
+                        }
+                    </ul>
                 </div>
                 <div className="col">
                     <h2>Formulario para añadir nombres</h2>
                     <form onSubmit={(e) => addNombre(e)} className="form-group">
-                        <input onChange={(e) => {setNombre(e.target.value)}} className="form-control mb-3" type="text" placeholder="Introduce el nombre"/>
+                        <input
+                            onChange={(e) => {setNombre(e.target.value)}}
+                            className="form-control mb-3" type="text"
+                            placeholder="Introduce el nombre"
+                            value={nombre}
+                        />
                         <input className="btn btn-info btn-block" type="submit" value="Registrar Nombre"/>
                     </form>
                 </div>
